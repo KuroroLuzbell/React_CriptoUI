@@ -1,7 +1,8 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { CrearUsuario } from "./Components/Usuarios/CrearUsuario";
+import { IniciarSesion } from "./Components/Usuarios/IniciarSesion";
 import { ListarUsuarios } from "./Components/Usuarios/ListarUsuarios";
-
+import './core.css'
 
 
 export const CriptoUIApp = () => {
@@ -18,16 +19,21 @@ export const CriptoUIApp = () => {
                   Usuarios
                 </Link>
               </li>
-              <li><a href="#" className="nav-link px-2 text-white">Diario</a></li>
+              <li>
+              <Link to={"/listarusuarios"} className="nav-link">
+                  Usuarios
+                </Link>
+              </li>
               <li><a href="#" className="nav-link px-2 text-white">Opciones</a></li>
               <li><a href="#" className="nav-link px-2 text-white">About</a></li>
             </ul>
-            <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" className="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search" />
-            </form>
     
             <div className="text-end">
-              <button type="button" className="btn btn-outline-light me-2">Login</button>
+              <button type="button" className="btn btn-outline-light me-2">
+                <Link to={"/iniciarsesion"} className="nav-link">
+                  Login
+                </Link>
+              </button>
               <button type="button" className="btn btn-warning">Sign-up</button>
             </div>
           </div>
@@ -35,7 +41,10 @@ export const CriptoUIApp = () => {
       </header>
       <Routes>
         <Route path="/usuarios" element={<CrearUsuario/>} />
+        <Route path="/listarusuarios" element={<ListarUsuarios/>} />
+        <Route path="/iniciarsesion" element={<IniciarSesion/>} />
       </Routes>
+
     </div>
   )
 }

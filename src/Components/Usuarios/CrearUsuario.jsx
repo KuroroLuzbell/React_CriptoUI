@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useForm } from '../../hooks/useForm';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+import UsuarioService from '../../Services/UsuarioService';
 export const CrearUsuario = () => {
-
-    const url = 'https://criptofriends.azurewebsites.net/api/Usuario/CrearUsuario';
-   
-
 
 
     const [formValues, handleInputChange] = useForm({
@@ -26,11 +22,11 @@ export const CrearUsuario = () => {
     
     const handleSubmit = async (e) => {
         console.log(formValues);
-        e.preventDefault();
+        // e.preventDefault();
 
 
 
-        await axios.post(url,formValues )
+        UsuarioService.create(formValues )
         .then(response=>{
             console.log(response);
         })
