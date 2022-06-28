@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from '../../hooks/useForm';
 import UsuarioService from '../../Services/UsuarioService';
-import {Formulario, Label,GrupoDiv,Input} from '../../Elements/Formulario';
+import {Formulario,FormIniciarSesion, Label,GrupoDiv,Input} from '../../Elements/Formulario';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -38,7 +38,7 @@ export const IniciarSesion = () => {
         <div className="text-center mt-4">
             <h1 className="h2">Inicia sesión para continuar</h1>
         </div>
-        <Formulario>
+        <FormIniciarSesion>
             <GrupoDiv>
                 <Label>Email</Label>
                 <Input className="form-control form-control-lg" type="email" name="Email" placeholder="email"  onChange={handleInputChange}/>
@@ -51,7 +51,7 @@ export const IniciarSesion = () => {
             <div className="text-center mt-3">
                 <button type="submit" className="btn btn-lg btn-primary">Iniciar Sesión</button>                                                
             </div>
-        </Formulario>
+        </FormIniciarSesion>
     </main>
   )
 }

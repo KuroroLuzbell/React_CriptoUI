@@ -20,6 +20,16 @@ const Formulario = styled.form`
     }
 `;
 
+const FormIniciarSesion = styled.form`
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Label= styled.label`
     display:block;
     font-weight: 700;
@@ -60,6 +70,5 @@ const LeyendaError = styled.p`
 `;
 
 
-const
 
-export {Formulario, Label,GrupoDiv,Input};
+export {Formulario, Label,GrupoDiv,Input,FormIniciarSesion};
