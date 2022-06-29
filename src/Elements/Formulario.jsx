@@ -1,6 +1,5 @@
 import  styled  from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 
 const colores={
@@ -12,7 +11,7 @@ const colores={
 
 const Formulario = styled.form`
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
 
     @media (max-width:800px){
@@ -29,7 +28,7 @@ const Label= styled.label`
 `
 
 
-const GrupoDiv = styled.div`
+const GrupoInput = styled.div`
     position: relative;
     z-index:90;
 `;
@@ -56,10 +55,19 @@ const LeyendaError = styled.p`
     font-size: 12px;
     margin-botton:0;
     color:${colores.error};
-    ${'' /* display:none; */}
+    display:none;
 `;
 
 
-const
 
-export {Formulario, Label,GrupoDiv,Input};
+
+const IconoValidacion = styled(FontAwesomeIcon)`
+    position:absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 100;
+    font-size: 16px;
+    opacity: 0;
+`;
+
+export {Formulario, Label,GrupoInput,Input,LeyendaError,IconoValidacion};
