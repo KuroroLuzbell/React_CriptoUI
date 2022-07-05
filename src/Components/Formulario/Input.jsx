@@ -1,11 +1,27 @@
 import {Label,GrupoInput,LeyendaError,IconoValidacion, Input} from '../../Elements/Formulario';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import {faCheckCircle, faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 
-const ComponenteInput = ({label,placeHolder,tipo,name,leyendaError,expresionRegular}) => {
+const ComponenteInput = ({estado, cambiarEstado, label,placeHolder,tipo,name,leyendaError,expresionRegular}) => {
+
+  const onChange = (e) => {
+    cambiarEstado({...estado, campo: e.target.value});
+  };
+
+  const validacion =() => {
+    if(expresionRegular){
+      if(expresionRegular.test(estado.campo)){
+        cambiarEstado({...estado, valido:'true'});
+      }
+      else{
+        cambiarEstado({...estado, valido:'false'});
+      }
+    }
+  }
+
   return (
     <div>
-        <Label htmlFor='Email'>{label}</Label>
+        <Label htmlFor={name} valido={estado.valido}>{label}</Label>
         <GrupoInput>                
             <Input 
               className="form-control form-control-lg" 
@@ -13,11 +29,17 @@ const ComponenteInput = ({label,placeHolder,tipo,name,leyendaError,expresionRegu
               name={name} 
               id={name} 
               placeholder={placeHolder}
-              
+              value={estado.campo}
+              onChange={onChange}
+              onKeyUp={validacion}
+              onBlur={validacion}
+              valido={estado.valido}
               />
-            <IconoValidacion icon={faCheckCircle}/>
+            <IconoValidacion 
+              icon={estado.valido==='true'? faCheckCircle:faTimesCircle} 
+              valido={estado.valido}/>
         </GrupoInput>
-        <LeyendaError>{leyendaError}</LeyendaError>
+        <LeyendaError valido={estado.valido}>{leyendaError}</LeyendaError>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import  styled  from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { css } from "styled-components";
 
 
 const colores={
@@ -35,6 +36,10 @@ const Label= styled.label`
     padding: 10px;
     min-height: 40px;
     cursor: pointer;
+
+    ${props=>props.valido==='false' && css`
+        color: ${colores.error} !important;
+    `}
 `
 
 
@@ -59,6 +64,13 @@ const Input = styled.input`
         outline: none;
         box-shadow: 3px 0px 30px rgba(163,163,163,0.4);
     }
+    ${props=>props.valido==='true' && css`
+        border: 3px solid transparent;
+    `}
+
+    ${props=>props.valido==='false' && css`
+        border: 3px solid ${colores.error} !important;
+    `}
 `;
 
 const LeyendaError = styled.p`
@@ -66,6 +78,14 @@ const LeyendaError = styled.p`
     margin-botton:0;
     color:${colores.error};
     display:none;
+
+    ${props=>props.valido==='true' && css`
+        display:none;
+    `}
+
+    ${props=>props.valido==='false' && css`
+        display:block;
+    `}
 `;
 
 
@@ -78,6 +98,16 @@ const IconoValidacion = styled(FontAwesomeIcon)`
     z-index: 100;
     font-size: 16px;
     opacity: 0;
+
+    ${props=>props.valido==='false' && css`
+        opacity: 1;
+        color: ${colores.error};
+    `}
+
+    ${props=>props.valido==='true' && css`
+        opacity: 1;
+        color: ${colores.exito};
+    `}
 `;
 
 export {Formulario, Label,GrupoInput,Input,LeyendaError,IconoValidacion};

@@ -3,14 +3,21 @@ import { useForm } from '../../hooks/useForm';
 import UsuarioService from '../../Services/UsuarioService';
 import {Formulario, Label,GrupoInput,Input} from '../../Elements/Formulario';
 import ComponenteInput from '../Formulario/Input'
+import { useState } from 'react';
 
 
 export const IniciarSesion = () => {
+
+  const [email, cambiarEmail] = useState({campo:'', valido:null})
 
     const [initSesion, handleInputChange] = useForm({
         Email:'',
         Texto:''
     })
+
+    const expresiones = {
+        usuario: /^[a-zA-Z0-9\_\-]{4,16}$/
+    }
 
     const {Email, Texto} = initSesion;
 
@@ -41,20 +48,14 @@ export const IniciarSesion = () => {
         <div className='col-6 offset-lg-3 '>
         <Formulario className=''>
             <ComponenteInput
+                estado={email}
+                cambiarEstado={cambiarEmail}
                 label="usuario"
                 placeHolder="john123"
                 tipo="text"
                 name="Email"
                 leyendaError="texto"
-                expresionRegular=""
-            />
-             <ComponenteInput
-                label="clave"
-                placeHolder="****"
-                tipo="password"
-                name="Texto"
-                leyendaError="texto"
-                expresionRegular=""
+                expresionRegular={expresiones.usuario}
             />
             <div className="text-center mt-3">
                 <button type="submit" className="btn btn-lg btn-primary">Iniciar Sesión</button>                                                
